@@ -6,9 +6,9 @@ A Python-based project designed to collect and pitch and summarize recent news a
 
 - 📰 Collects news articles about space and satellites from the past week
 - 🌍 Categorizes news by country/region
-- 🏆 Utilizes a Pitcher Agent to select the top news for each region
-- 📝 Uses a Scripter Agent to summarize the selected news in under 150 words
-- ⚙️ Compiles the Pitcher Agent & Scripter Agent by LangGraph
+- 🏆 Utilizes a Pitcher AI Agent to select the top news for each region
+- 📝 Uses a Scripter AI Agent to summarize the selected news in under 150 words
+- ⚙️ Compiles the two AI Agents by LangGraph
 - 🌐 Develops a Streamlit web interface
 - 📄 Generates a downloadable user-friendly docx document with summarized news
 ![Project Banner](https://github.com/Zifeng-Jiang/News_agent/blob/main/NewsAgents.jpg)
