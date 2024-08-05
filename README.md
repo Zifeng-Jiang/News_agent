@@ -11,7 +11,7 @@ A Python-based project designed to collect and summarize recent news about space
 - ⚙️ Compiles the Pitcher Agent & Scripter Agent by LangGraph
 - 🌐 Develops a Streamlit web interface
 - 📄 Generates a downloadable user-friendly docx document with summarized news
-
+![Project Banner](https://github.com/Zifeng-Jiang/News_agent/blob/main/NewsAgents.jpg)
 ## Installation (Python/Conda) 🛠️
 
 To install and set up the project, follow these steps:
