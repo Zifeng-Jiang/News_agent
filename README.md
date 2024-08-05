@@ -118,4 +118,4 @@ Contributions are welcome! Please follow these steps to contribute:
 
 ## Contact 📧
 
-For any inquiries or feedback, please contact Zifeng Jiang at [jzf.job@gmail.com].
+For any inquiries or feedback, please contact Zifeng Jiang at `jzf.job@gmail.com`.
