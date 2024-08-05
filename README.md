@@ -1,18 +1,18 @@
-# News Agent
+# News Agent 🌌🛰️
 
 A Python-based project designed to collect and summarize recent news about space and satellites. The project categorizes news by country/region and selects the top news for each region, providing a concise summary for easy reading.
 
-## Features
+## Features ✨
 
-- Collects news articles about space and satellites from the past week
-- Categorizes news by country/region
-- Utilizes a Pitcher Agent to select the top news for each region
-- Uses a Scripter Agent to summarize the selected news in under 150 words
-- Compiles the Pitcher Agent & Scripter Agent by LangGraph
-- Develops a streamlit web interface
-- Generates a user-friendly docx document with summarized news
+- 📰 Collects news articles about space and satellites from the past week
+- 🌍 Categorizes news by country/region
+- 🏆 Utilizes a Pitcher Agent to select the top news for each region
+- 📝 Uses a Scripter Agent to summarize the selected news in under 150 words
+- ⚙️ Compiles the Pitcher Agent & Scripter Agent by LangGraph
+- 🌐 Develops a Streamlit web interface
+- 📄 Generates a downloadable user-friendly docx document with summarized news
 
-## Installation(Python/Conda)
+## Installation (Python/Conda) 🛠️
 
 To install and set up the project, follow these steps:
 
@@ -28,10 +28,10 @@ To install and set up the project, follow these steps:
     ```bash
     pip install -r requirements.txt
     ```
-4. Make sure you have Google Chrome browser and the corresponding version of ChromeDriver
+4. Make sure you have Google Chrome browser and the corresponding version of ChromeDriver.
+5. Ensure you have an LLM API that can be invoked by LangChain.
 
-5. Make sure you have a LLM API that can be invoked by LangChain
-### Usage
+## Usage 🚀
 
 To start using the News Agent, run the following command:
 
@@ -39,7 +39,7 @@ To start using the News Agent, run the following command:
 streamlit run main.py
 ```
 
-## Installation(Docker) *Recomanded*
+## Installation(Docker) 🐳 *Recomanded*
 Write a docker file and run the project in container
 Example:
 ```
@@ -99,10 +99,23 @@ RUN chromedriver --version
 
 # Setting Environment Variables
 ENV DISPLAY=:99
-ENV DASHSCOPE_API_KEY= <YOUR_API_KEY>
+ENV DASHSCOPE_API_KEY=<YOUR_API_KEY>
+
 # Install Python Dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Start Xvfb and run the application
 CMD ["sh", "-c", "Xvfb :99 -screen 0 1920x1080x24 & echo | streamlit run main.py --server.port 8502 --server.enableCORS false "]
 ```
+## Contributing 🤝
+Contributions are welcome! Please follow these steps to contribute:
+
+Fork the repository
+Create a new branch (git checkout -b feature-branch)
+Commit your changes (git commit -m 'Add new feature')
+Push to the branch (git push origin feature-branch)
+Open a pull request
+
+## Contact 📧
+
+For any inquiries or feedback, please contact Zifeng Jiang at [jzf.job@gmail.com].
