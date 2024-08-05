@@ -1,6 +1,9 @@
 from spacenews_scraper import *
 from find_news_mideast import *
 from satellitetoday_scraper import *
+from AI_launch_commercial import *
+from google_news_scraper import *
+from space_africa_scraper import *
 
 def run_news_scraper():
     result = get_spacenews()
@@ -15,6 +18,22 @@ def run_news_scraper():
     satellitetoday_news = get_satellitetoday_news()
     result = result + satellitetoday_news
     #print(satellitetoday_news)
+
+    AI_news = add_news('AI')
+    #print(len(AI_news))
+    launch_news = add_news('launch')
+    #print(len(launch_news))
+    commercial_news = add_news('commercial')
+    #print(len(commercial_news))
+    result = result + AI_news + launch_news + commercial_news
+    #result = AI_news + launch_news + commercial_news
+    # 加入爬取google news的结果
+    google_news = get_google_news()
+    result = result + google_news
+    # 加入爬取Space in Africa的结果
+    africa_news = get_spaceinafrica()
+    result = result + africa_news
+
 
     # 有些文章没有abstruct，则将标题作为abstruct
     for article in result:

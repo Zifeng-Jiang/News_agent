@@ -1,9 +1,12 @@
 dashscope
+feedparser
 langgraph
 langchain
 langchain_community
 lxml
+python-docx
 requests
+requests_html
 selenium
-streamlit
+streamlit==1.37.0
 webdriver_manager

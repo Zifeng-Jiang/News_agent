@@ -2,7 +2,15 @@ import requests
 from lxml import html
 from datetime import datetime, timedelta
 
-def get_spacenews():
+def add_news(topic):
+    url = ''
+    if topic == 'AI':
+        url = "https://spacenews.com/section/AI/"
+    elif topic == 'launch':
+        url = "https://spacenews.com/section/launch-archive/"
+    elif topic == 'commercial': 
+        url = "https://spacenews.com/section/commercial-archive/"
+
     # 获取当前日期
     today = datetime.now()
     one_week_ago = today - timedelta(days=7)
@@ -26,11 +34,7 @@ def get_spacenews():
             abstract = abstract[0].strip() if abstract else ''
             #print(f'Abstract: {abstract}')
             
-            tag = article.xpath('.//span/a/text()')
-            tag = tag[0].strip() if tag else ''
-            #print(f'Tag: {tag}')
-            
-            date_str = article.xpath('.//div[2]/span[3]/a/time[1]/@datetime')
+            date_str = article.xpath('.//div/span[3]/a/time[1]/@datetime')
             date_str = date_str[0] if date_str else None
             #print(f'Date: {date_str}')
 
@@ -46,22 +50,23 @@ def get_spacenews():
                 #print('Date is older than one week. Stopping...')
                 return False
 
-            link = article.xpath('.//header/h2/a/@href')
+            link = article.xpath('./div/header/h2/a/@href')
             link = link[0] if link else 'No Link'
             #print(f'Link: {link}')
             
             # 爬取新闻内容和图片
+            #news_content, news_images = scrape_content_and_images(link) if link != 'No Link' else ('No Content', [])
             news_content = scrape_content_and_images(link) if link != 'No Link' else 'No Content'
             #print(f'Content: {news_content[:100]}...')  # 仅显示前100个字符以节省空间
             
             # 将新闻信息存储在字典中
             news = {
                 'title': title,
-                'tag': tag,
                 'date': date_str,
                 'link': link,
-                'abstract': abstract,
+                'abstract': abstract,               
                 'content': news_content
+                #'images': news_images
             }
             news_list.append(news)
 
@@ -74,15 +79,28 @@ def get_spacenews():
         paragraphs = tree.xpath('//div[@class="entry-content"]/p')
         content = '\n'.join([p.text_content().strip() for p in paragraphs if p.text_content().strip()])
         content = ' '.join(content.replace('\n', ' ').replace('\t', ' ').replace('\xa0', ' ').replace('\r', ' ').split())
+
+        # images = tree.xpath('//figure[contains(@class, "post-thumbnail")]//img/@src')
+        # image_data = []
+        # for img_url in images:
+        #     try:
+        #         img_response = requests.get(img_url)
+        #         if img_response.status_code == 200:
+        #             image_data.append(BytesIO(img_response.content))
+        #             #print(f"Successfully fetched image from {img_url}")
+        #         #else:
+        #             #print(f"Failed to retrieve image {img_url}, status code {img_response.status_code}")
+        #     except Exception as e:
+        #         print(f"Exception occurred while fetching image {img_url}: {e}")
         
-        return content
+        return content #, image_data
 
     # 开始爬取第一页
-    base_url = 'https://spacenews.com/?s&orderby=post_date&order=desc'
+    base_url = url
     page_num = 1
 
     while True:
-        page_url = f'{base_url}&paged={page_num}'
+        page_url = f'{base_url}?paged={page_num}'
         print(f'Scraping page {page_num}...')
         if not scrape_page(page_url):
             break
@@ -90,7 +108,8 @@ def get_spacenews():
 
     filtered_list = []
     for news in news_list:
-        if news['tag'].lower() not in ['video', 'policy & politics', 'military', 'opinion', 'launch', 'commercial']:
+        if 'military' not in news['title'] and 'military' not in news['abstract'] and \
+        'politics' not in news['title'] and 'politics' not in news['abstract']:
+            news['tag'] = topic
             filtered_list.append(news)
-
     return filtered_list

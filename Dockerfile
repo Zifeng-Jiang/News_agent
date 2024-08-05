@@ -65,9 +65,9 @@ RUN chromedriver --version
 
 # 设置环境变量
 ENV DISPLAY=:99
-
+ENV DASHSCOPE_API_KEY=sk-4a6d7c3447314975bcebf0b2f1e1e29e
 # 安装Python依赖
 RUN pip install --no-cache-dir -r requirements.txt
 
 # 启动Xvfb并运行应用程序
-CMD ["sh", "-c", "Xvfb :99 -screen 0 1920x1080x24 & streamlit run main.py --server.port 8502 --server.enableCORS false "]
+CMD ["sh", "-c", "Xvfb :99 -screen 0 1920x1080x24 & echo | streamlit run main.py --server.port 8502 --server.enableCORS false "]

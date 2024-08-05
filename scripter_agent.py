@@ -1,16 +1,14 @@
 from langchain_community.llms import Tongyi
 from datetime import datetime
-import os
 
-os.environ['DASHSCOPE_API_KEY'] = 'sk-4a6d7c3447314975bcebf0b2f1e1e29e'
 llm = Tongyi()
 
 class ScripterAgent:
     def script(self, article: dict):
-        content = article['content']
+        content = article.get('content', '')
         word_count = len(content.split())
-        # 如果content的词数小于250，则直接返回content作为summary
-        if word_count < 250:
+        # 如果content的词数小于150，则直接返回content作为summary
+        if word_count < 150:
             return content
         
         prompt = [{
@@ -24,7 +22,7 @@ class ScripterAgent:
                        f"Tag: {article['tag']}\n"
                        f"Abstract: {article['abstract']}\n"
                        f"Content: {article['content']}\n\n"
-                       f"Your task is to summarize the article into 150-200 words, highlighting the main points and ensuring it's well-written and coherent. "
+                       f"Your task is to summarize the article into less than 150 words, highlighting the main points and ensuring it's well-written and coherent. "
                        f"Please return the summarized article in plain text, do not return other content"
         }]
 

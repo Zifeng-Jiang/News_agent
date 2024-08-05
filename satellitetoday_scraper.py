@@ -1,25 +1,22 @@
+from lxml import html
+from datetime import datetime, timedelta
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service as ChromeService
-from webdriver_manager.chrome import ChromeDriverManager
-from lxml import html
-from datetime import datetime, timedelta
 import time
-import requests
 
 def get_satellitetoday_news():
     # 获取当前日期
     today = datetime.now()
-    one_week_ago = today - timedelta(days=8)
+    one_week_ago = today - timedelta(days=7)
     
     # 构建 URL
     date_range = f"{one_week_ago.strftime('%Y-%m-%d')}--{today.strftime('%Y-%m-%d')}"
     base_url = f"https://www.satellitetoday.com/?s=&order=desc&orderby=post_date&date_range={date_range}"
     
     # 配置 Selenium WebDriver
-    
     options = Options()
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
@@ -28,8 +25,6 @@ def get_satellitetoday_news():
     options.add_argument("--remote-debugging-port=9222")
     driver = webdriver.Chrome(service=ChromeService(), options=options)
     driver.set_window_size(1400,1000)
-    #driver = webdriver.Chrome(service=Service("/home/jzf/chromedriver_linux"), options=chrome_options)
-    #driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
     
     # 打开目标网站
     driver.get(base_url)
@@ -75,22 +70,21 @@ def get_satellitetoday_news():
         link = link[0] if link else 'No Link'
         #print(f'Link: {link}')
 
-        # 定义函数爬取新闻内容
-        def scrape_content(url):
-            response = requests.get(url)
-            tree = html.fromstring(response.content)
+        # image_urls = article.xpath('.//div/div[1]/a/img/@src')
+        # images_data = []
 
-            # 使用更准确的XPath来抓取内容
-            content_divs = tree.xpath('//div[contains(@class, "inner_content")]')
-            content = ""
-            for div in content_divs:
-                paragraphs = div.xpath('.//p/span')
-                content += '\n'.join([p.text_content().strip() for p in paragraphs if p.text_content().strip()])
-                content += '\n'
-            
-            content = content.strip()  # 移除多余的换行符
-            return ' '.join(content.replace('\n', ' ').replace('\t', ' ').replace('\xa0', ' ').replace('\r', ' ').split())
-        
+        # for img_url in image_urls:
+        #     if img_url != 'No Image':
+        #         try:
+        #             img_response = requests.get(img_url)
+        #             if img_response.status_code == 200:
+        #                 images_data.append(BytesIO(img_response.content))
+        #                 print(f"Successfully fetched image from {img_url}")
+        #             else:
+        #                 print(f"Failed to retrieve image {img_url}, status code {img_response.status_code}")
+        #         except Exception as e:
+        #             print(f"Exception occurred while fetching image {img_url}: {e}")
+
         # 爬取新闻内容
         #news_content = scrape_content(link)
         news_content = ''  # 反爬机制爬不到content，但是有abstract和link
@@ -103,6 +97,7 @@ def get_satellitetoday_news():
             'date': date_str,
             'link': link,
             'content': news_content
+            #'images': images_data
         }
         news_list.append(news)
 

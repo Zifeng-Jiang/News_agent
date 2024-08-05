@@ -5,7 +5,7 @@ def is_relevant_article(region, text):
     if region == 'china':
         return 'china' in text or 'chinese' in text
     elif region == 'middle_east':
-        middle_east_countries = ['middle east', 'iran', 'iraq', 'israel', 'jordan', 'kuwait', 'lebanon', 'oman', 'palestine', 'qatar', 'saudi arabia', 'syria', 'united arab emirates', 'yemen']
+        middle_east_countries = ['middle east', 'iran', 'iraq', 'israel', 'jordan', 'kuwait', 'lebanon', 'oman', 'palestine', 'qatar', 'saudi arabia', 'syria', 'united arab emirates', 'uae', 'yemen', 'türkiye', 'turkey']
         return any(country in text for country in middle_east_countries)
     elif region == 'central_asia':
         central_asia_countries = ['central asia', 'kazakhstan', 'kyrgyzstan', 'tajikistan', 'turkmenistan', 'uzbekistan']
@@ -38,8 +38,6 @@ def is_relevant_article(region, text):
 def filter_news_by_region(news_list, region):
     filtered_list = []
     for news in news_list:
-        if (is_relevant_article(region.lower(), news['title'].lower()) and
-            is_relevant_article(region.lower(), news['abstract'].lower()) and
-            is_relevant_article(region.lower(), news['content'].lower())):
+        if is_relevant_article(region.lower(), news['title'].lower()) or is_relevant_article(region.lower(), news['abstract'].lower()):
             filtered_list.append(news)
     return filtered_list
