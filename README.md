@@ -1,6 +1,6 @@
 # News Agent 🌌🛰️
 
-A Python-based project designed to collect and summarize recent news about space and satellites. The project categorizes news by country/region and selects the top news for each region, providing a concise summary for easy reading.
+A Python-based project designed to collect and pitch and summarize recent news about space and satellites. The project categorizes news by country/region and selects the top news for each region, providing a concise summary for easy reading.
 
 ## Features ✨
 
