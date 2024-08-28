@@ -2,13 +2,13 @@ import requests
 from lxml import html
 from langchain_community.llms import Tongyi
 
-llm = Tongyi()
+llm = Tongyi(max_retries = 30)
 
 def script(article: dict):
         content = article['content']
         word_count = len(content.split())
-        # 如果content的词数小于40，则直接返回content作为summary
-        if word_count < 40:
+        # 如果content的词数小于100，则直接返回content作为summary
+        if word_count < 100:
             return content
         
         prompt = [{
@@ -21,7 +21,7 @@ def script(article: dict):
                        f"address: {article['address']}\n"
                        f"Date: {article['date']}\n"
                        f"Content: {article['content']}\n\n"
-                       f"Your task is to summarize the event into less than 40 words, highlighting the main points and ensuring it's well-written and coherent. "
+                       f"Your task is to summarize the event into less than 100 words, highlighting the main points and ensuring it's well-written and coherent. "
                        f"Please return the summarized event in plain text, do not return other content"
         }]
 

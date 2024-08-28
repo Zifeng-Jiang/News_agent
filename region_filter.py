@@ -5,13 +5,16 @@ def is_relevant_article(region, text):
     if region == 'china':
         return 'china' in text or 'chinese' in text
     elif region == 'middle_east':
-        middle_east_countries = ['middle east', 'iran', 'iraq', 'israel', 'jordan', 'kuwait', 'lebanon', 'oman', 'palestine', 'qatar', 'saudi arabia', 'syria', 'united arab emirates', 'uae', 'yemen', 'türkiye', 'turkey']
+        middle_east_countries = ['middle east', 'iran', 'iraq', 'jordan', 'kuwait', 'lebanon', 'oman', 'palestine', 'qatar', 
+                                 'saudi arabia', 'syria', 'united arab emirates', 'uae', 'yemen', 'türkiye', 'turkey']
         return any(country in text for country in middle_east_countries)
     elif region == 'central_asia':
         central_asia_countries = ['central asia', 'kazakhstan', 'kyrgyzstan', 'tajikistan', 'turkmenistan', 'uzbekistan']
         return any(country in text for country in central_asia_countries)
     elif region == 'latin_america':
-        latin_america_countries = ['latin america', 'argentina', 'bolivia', 'brazil', 'chile', 'colombia', 'costa rica', 'cuba', 'dominican republic', 'ecuador', 'el salvador', 'guatemala', 'honduras', 'mexico', 'nicaragua', 'panama', 'paraguay', 'peru', 'puerto rico', 'uruguay', 'venezuela']
+        latin_america_countries = ['latin america', 'argentina', 'bolivia', 'brazil', 'chile', 'colombia', 'costa rica', 
+                                   'cuba', 'dominican republic', 'ecuador', 'el salvador', 'guatemala', 'honduras', 'mexico', 
+                                   'nicaragua', 'panama', 'paraguay', 'peru', 'puerto rico', 'uruguay', 'venezuela']
         return any(country in text for country in latin_america_countries)
     elif region == 'africa':
         african_countries = [

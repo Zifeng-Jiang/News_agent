@@ -10,3 +10,5 @@ requests_html
 selenium
 streamlit==1.37.0
 webdriver_manager
+openai
+qianfan

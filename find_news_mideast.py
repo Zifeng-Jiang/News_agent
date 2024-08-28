@@ -99,7 +99,7 @@ def get_roundup(url):
                 content.append(current_element.text_content().strip())
             current_element = current_element.getnext()
 
-        content_text = "\n".join(content)
+        content_text = " ".join(content)
         
         # 创建包含标题和内容的字典
         entry = {

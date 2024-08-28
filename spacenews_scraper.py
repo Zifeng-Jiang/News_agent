@@ -90,7 +90,8 @@ def get_spacenews():
 
     filtered_list = []
     for news in news_list:
-        if news['tag'].lower() not in ['video', 'policy & politics', 'military', 'opinion', 'launch', 'commercial']:
+        if news['tag'].lower() not in ['video', 'policy & politics', 'military', 'opinion', 'launch', 'commercial'] and \
+        not any(word in news['title'].lower() for word in ['geopolitical', 'politics']):
             filtered_list.append(news)
 
     return filtered_list

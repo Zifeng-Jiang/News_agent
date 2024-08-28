@@ -56,7 +56,7 @@ def add_news(topic):
             
             # 爬取新闻内容和图片
             #news_content, news_images = scrape_content_and_images(link) if link != 'No Link' else ('No Content', [])
-            news_content = scrape_content_and_images(link) if link != 'No Link' else 'No Content'
+            news_content = scrape_content(link) if link != 'No Link' else 'No Content'
             #print(f'Content: {news_content[:100]}...')  # 仅显示前100个字符以节省空间
             
             # 将新闻信息存储在字典中
@@ -73,7 +73,7 @@ def add_news(topic):
         return True
 
     # 定义函数爬取新闻内容和图片
-    def scrape_content_and_images(url):
+    def scrape_content(url):
         response = requests.get(url)
         tree = html.fromstring(response.content)
         paragraphs = tree.xpath('//div[@class="entry-content"]/p')
