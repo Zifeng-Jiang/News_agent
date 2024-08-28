@@ -65,9 +65,9 @@ RUN chromedriver --version
 
 # 设置环境变量
 ENV DISPLAY=:99
-ENV DASHSCOPE_API_KEY=sk-4a6d7c3447314975bcebf0b2f1e1e29e
-ENV QIANFAN_AK=3i1j7bH7HwrjBnkomhHs5UjJ
-ENV QIANFAN_SK=b4JaljmauCABb2UUw8DKYtsO9KnaZnus
+ENV DASHSCOPE_API_KEY=<DASHSCOPE_API_KEY>
+ENV QIANFAN_AK=<QIANFAN_API_KEY>
+ENV QIANFAN_SK=<QIANFAN_SECREAT_KEY>
 
 # 安装Python依赖
 RUN pip install --no-cache-dir -r requirements.txt
