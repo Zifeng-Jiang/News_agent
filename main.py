@@ -96,7 +96,7 @@ if btn:
 
                         base_urls = ["https://api.chatanywhere.tech/v1", "https://api.chatanywhere.com.cn/v1"]
                         client = OpenAI(
-                            api_key="sk-Nf3A4Mua2hfnEKQ4ca4GxrcgkrEYUDPVxHcfeGhezpWPg2Ul", 
+                            api_key="YOUR_OPEN_AI_API_KEY", 
                             base_url=base_urls[0],
                         )
                         completion = client.chat.completions.create(
