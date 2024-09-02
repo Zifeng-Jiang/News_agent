@@ -30,6 +30,9 @@ def get_satellitetoday_news():
         
         # 使用相对路径进行XPath选择
         articles = tree.xpath('//*[@id="site-content"]/div/div[1]/article')
+
+        if not articles:
+            return False
         
         for article in articles:
             title = article.xpath('.//div/div[1]/a[1]/text()')
@@ -77,8 +80,6 @@ def get_satellitetoday_news():
         
         return True
     
-    
-    
     # 开始爬取第一页
     page_num = 1
     
@@ -99,4 +100,3 @@ def get_satellitetoday_news():
             filtered_list.append(news)
             
     return filtered_list
-

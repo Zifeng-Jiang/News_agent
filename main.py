@@ -42,6 +42,16 @@ if btn:
     with st.spinner('Collecting and summarizing news...'):
         best_news = []
         news_list = run_news_scraper()
+        # for news in news_list:
+            # 初始化所有可能的字段，避免 KeyError
+            # news.setdefault('title', '')
+            # news.setdefault('link', '')
+            # news.setdefault('date', '')
+            # news.setdefault('tag', '')
+            # news.setdefault('summary', '')
+            # news.setdefault('abstract', '')
+            # news.setdefault('content', '')
+            #news.setdefault('images', [])
 
         regions = ["china", "middle_east", "africa", "central_asia", "southeast_asia", "latin_america", "AI", "launch", "commercial"]
         for region in regions:
@@ -86,7 +96,7 @@ if btn:
 
                         base_urls = ["https://api.chatanywhere.tech/v1", "https://api.chatanywhere.com.cn/v1"]
                         client = OpenAI(
-                            api_key="OPENAI_API_KEY", 
+                            api_key="sk-Nf3A4Mua2hfnEKQ4ca4GxrcgkrEYUDPVxHcfeGhezpWPg2Ul", 
                             base_url=base_urls[0],
                         )
                         completion = client.chat.completions.create(

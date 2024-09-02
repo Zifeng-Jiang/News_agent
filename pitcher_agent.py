@@ -24,7 +24,7 @@ class PitcherAgent:
             }]
 
             client = OpenAI(
-                api_key="OPENAI_API_KEY", 
+                api_key="sk-TzvAm1AGbpwILDIN37Be6fDe1bAb4d2b9731EdE47b944e23", 
                 base_url="https://free.gpt.ge/v1/"
             )
         
