@@ -30,13 +30,13 @@ RUN apt-get update && apt-get install -y \
     libu2f-udev && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # 下载和安装指定版本的Chrome
-RUN wget -q https://storage.googleapis.com/chrome-for-testing-public/128.0.6613.86/linux64/chrome-linux64.zip && \
+RUN wget -q https://storage.googleapis.com/chrome-for-testing-public/128.0.6613.137/linux64/chrome-linux64.zip && \
     unzip chrome-linux64.zip -d /usr/local/ && \
     rm chrome-linux64.zip && \
     ln -s /usr/local/chrome-linux64/chrome /usr/local/bin/google-chrome
 
 # 下载和安装指定版本的ChromeDriver
-RUN wget -q https://storage.googleapis.com/chrome-for-testing-public/128.0.6613.86/linux64/chromedriver-linux64.zip && \
+RUN wget -q https://storage.googleapis.com/chrome-for-testing-public/128.0.6613.137/linux64/chromedriver-linux64.zip && \
     unzip chromedriver-linux64.zip && \
     mv chromedriver-linux64/chromedriver /usr/local/bin/ && \
     rm -rf chromedriver-linux64 chromedriver-linux64.zip && \
